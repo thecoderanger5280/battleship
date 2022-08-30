@@ -1,5 +1,5 @@
 require 'rspec'
-#require './lib/ship'
+require './lib/ship'
 require './lib/cell'
 
 RSpec.describe Cell do
@@ -15,6 +15,17 @@ RSpec.describe Cell do
 
             expect(cell.ship).to eq(nil)
             expect(cell.empty?).to eq(true)
+        end
+    end
+
+    describe '#place ship' do
+        it 'can add a ship' do
+            cell = Cell.new("B4")
+            cruiser = Ship.new("Cruiser", 3)
+
+            cell.place_ship(cruiser)
+            expect(cell.ship).to eq(cruiser)
+            expect(cell.empty?).to eq(false)
         end
     end
 end
