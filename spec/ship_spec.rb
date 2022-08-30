@@ -21,3 +21,17 @@ describe '#length' do
     expect(cruiser.length).to eq 3
   end
 end
+
+describe '#health' do
+  it 'has readable attributes' do
+    cruiser = Ship.new('Cruiser', 3)
+    expect(cruiser.health).to eq 3
+  end
+end
+
+describe '#sunk?' do
+  it 'returns true or false' do
+    cruiser = Ship.new('Cruiser', 3)
+    expect(cruiser.sunk?).to eq false
+  end
+end
