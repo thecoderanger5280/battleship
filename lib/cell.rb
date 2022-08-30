@@ -28,11 +28,43 @@ class Cell
     end
 
     def fire_upon
-        @hit = true
-        @ship.hit
+        if(@ship != nil)
+            @hit = true
+            @ship.hit
+        else
+            @hit = true
+        end
     end
 
     def render(display = false)
-        
+        if(@ship == nil)
+            if(@hit)
+                "M"
+            else
+                "."
+            end
+        else
+            if(display)
+                if(!@hit)
+                    "S"
+                else
+                    if(@ship.sunk?)
+                        "X"
+                    else
+                        "H"
+                    end
+                end
+            else
+                if(!@hit)
+                    "."
+                else
+                    if(@ship.sunk?)
+                        "X"
+                    else
+                        "H"
+                    end
+                end
+            end
+        end
     end
 end

@@ -55,10 +55,10 @@ RSpec.describe Cell do
             expect(cell.render).to eq("M")
             expect(cell2.render).to eq(".")
             expect(cell2.render(true)).to eq("S")
-            cell.fire_upon
+            cell2.fire_upon
             expect(cell2.render).to eq("H")
-            cruiser.hit
-            cruiser.hit
+            cell2.ship.hit
+            cell2.ship.hit
             expect(cell2.render).to eq("X")
         end
     end
