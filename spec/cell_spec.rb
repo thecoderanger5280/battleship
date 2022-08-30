@@ -30,13 +30,15 @@ RSpec.describe Cell do
     end
 
     describe '#fired_upon?' do
-        cell = Cell.new("B4")
-        cruiser = Ship.new("Cruiser", 3)
+        it 'can be fired upon' do
+            cell = Cell.new("B4")
+            cruiser = Ship.new("Cruiser", 3)
 
-        cell.place_ship(cruiser)
+            cell.place_ship(cruiser)
 
-        expect(cell.fired_upon?).to eq(false)
-        cell.fire_upon
-        expect(cell.fired_upon?).to eq(true)
+            expect(cell.fired_upon?).to eq(false)
+            cell.fire_upon
+            expect(cell.fired_upon?).to eq(true)
+        end
     end
 end
