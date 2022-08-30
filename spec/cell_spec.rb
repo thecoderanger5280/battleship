@@ -9,5 +9,12 @@ RSpec.describe Cell do
 
             expect(cell).to be_an_instance_of(Cell)
         end
+
+        it 'can have a ship' do
+            cell = Cell.new("B4")
+
+            expect(cell.ship).to eq(nil)
+            expect(cell.empty?).to eq(true)
+        end
     end
 end
