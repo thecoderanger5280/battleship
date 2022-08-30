@@ -44,5 +44,6 @@ describe '#hit' do
     cruiser.hit
     cruiser.hit
     expect(cruiser.health).to eq 0
+    expect(cruiser.sunk?).to eq true
   end
 end
