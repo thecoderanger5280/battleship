@@ -35,3 +35,14 @@ describe '#sunk?' do
     expect(cruiser.sunk?).to eq false
   end
 end
+
+describe '#hit' do
+  it 'subtracts 1 from ship_health' do
+    cruiser = Ship.new('Cruiser', 3)
+    cruiser.hit
+    expect(cruiser.health).to eq 2
+    cruiser.hit
+    cruiser.hit
+    expect(cruiser.health).to eq 0
+  end
+end
