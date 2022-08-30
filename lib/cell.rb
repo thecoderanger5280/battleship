@@ -31,4 +31,8 @@ class Cell
         @hit = true
         @ship.hit
     end
+
+    def render(display = false)
+        
+    end
 end

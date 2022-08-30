@@ -41,4 +41,25 @@ RSpec.describe Cell do
             expect(cell.fired_upon?).to eq(true)
         end
     end
+
+    describe '#render' do
+        it 'can display various symbols' do
+            cell = Cell.new("B4")
+            cell2 = Cell.new("C3")
+            cruiser = Ship.new("Cruiser", 3)
+
+            cell2.place_ship(cruiser)
+
+            expect(cell.render).to eq(".")
+            cell.fire_upon
+            expect(cell.render).to eq("M")
+            expect(cell2.render).to eq(".")
+            expect(cell2.render(true)).to eq("S")
+            cell.fire_upon
+            expect(cell2.render).to eq("H")
+            cruiser.hit
+            cruiser.hit
+            expect(cell2.render).to eq("X")
+        end
+    end
 end
