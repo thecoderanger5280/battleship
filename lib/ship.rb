@@ -11,11 +11,7 @@ class Ship
   end
 
   def sunk?
-    if @ship_health <= 0
-      true
-    else
-      false
-    end
+    @ship_health <= 0
   end
 
   def hit
