@@ -10,4 +10,8 @@ class Board
       end
     end
   end
+
+  def valid_coordinate?(coord)
+    cells.include?(coord)
+  end
 end
