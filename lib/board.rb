@@ -1,3 +1,5 @@
+require './cell'
+
 class Board
   attr_reader :cells
   def initialize
@@ -16,23 +18,39 @@ class Board
   end
 
   def valid_placement?(ship, coords)
-    x_coords = coords.map{|coord| coord[0]}
-    y_coords = coords.map{|coord| coord[1]}
-    is_valid = !coords.map{|coord| valid_coordinate?(coord)}.include?(false)
-    is_horiz = !x_coords.map{|coord| coord == x_coords[0]}.include?(false)
-    is_vert = !y_coords.map{|coord| coord == y_coords[0]}.include?(false)
-    if ship.length !== coords.length
-      is_valid = false
-    end
-    if is_horiz
-      x_sorted = x_coords.sort
-      i = 0
-      horiz.each do |x|
-
+    if(ship.length == coords.length)
+      letters = coords.map { |coord| coord.slice(0)}
+      numbers = coords.map { |coord| coord.slice(1)}
+      number_ints = numbers.map { |number| number.to_i}
+      letter_ascii = letters.map { |letter| letter.ord}
+      valid_placement = false
+      if(letters.uniq.length == 1)
+        number_ints.each_with_index do |numb, i|
+          if(i < number_ints.length - 1)
+            if(number_ints[i + 1] - numb == 1)
+              valid_placement = true
+            else
+              valid_placement = false
+            end
+          end
+        end
+        valid_placement
+      elsif(numbers.uniq.length == 1)
+        letter_ascii.each_with_index do |lett, i|
+          if(i < letter_ascii.length - 1)
+            if(letter_ascii[i + 1] - lett == 1)
+              valid_placement = true
+            else
+              valid_placement = false
+            end
+          end
+        end
+        valid_placement
+      elsif(numbers.uniq.length != 1 && letters.uniq.length != 1)
+        false
       end
-
-
+    else
+      false
     end
-    y_coords.sort
   end
 end
