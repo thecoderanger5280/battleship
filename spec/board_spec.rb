@@ -65,6 +65,8 @@ describe '#valid_placement' do
       board = Board.new
       cruiser = Ship.new('Cruiser', 3)
       expect(board.place(cruiser, ['B2', 'B3', 'B4'])).to eq true
+      expect(board.place(cruiser, ['B2', 'B2', 'B1'])).to eq false
+      expect(board.place(cruiser, ['B1', 'B3', 'B2'])).to eq false
     end
   end
 
