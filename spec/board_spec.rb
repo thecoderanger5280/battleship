@@ -67,4 +67,14 @@ describe '#valid_placement' do
       expect(board.place(cruiser, ['B2', 'B3', 'B4'])).to eq true
     end
   end
+
+  describe '#render' do
+    it 'renders a board without showing the ships' do
+      board = Board.new
+      cruiser = Ship.new('Cruiser', 3)
+      board.place(cruiser, ['A1', 'A2', 'A3'])
+
+      expect(board.render).to eq("  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n")
+    end
+  end
 end

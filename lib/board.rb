@@ -4,9 +4,9 @@ class Board
   attr_reader :cells
   def initialize
     @cells = {}
-    horiz = ["A", "B", "C", "D"]
+    @horiz = ["A", "B", "C", "D"]
     vert = ["1", "2", "3", "4"]
-    horiz.each do |x|
+    @horiz.each do |x|
       vert.each do |y|
         @cells.store(x+y, Cell.new(x+y))
       end
@@ -78,5 +78,24 @@ class Board
     else
       false
     end
+  end
+
+  def render(display = false)
+    board_render = "  1 2 3 4 \n"
+    if(!display)
+      @horiz.each do |coll|
+        board_render << "#{coll.slice(0)} "
+        lines = @cells.find_all { |cell| coll.slice(0) == cell[0].slice(0)}
+        # @cells.find_all do |cell|
+        #   p "#{cell[1].render} "
+        #   coll.slice(0) == cell[0].slice(0)
+        # end
+        lines.each do |cell|
+          board_render << "#{cell[1].render} "
+        end
+        board_render << "\n"
+      end
+    end
+    board_render
   end
 end
