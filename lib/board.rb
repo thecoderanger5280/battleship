@@ -86,12 +86,17 @@ class Board
       @horiz.each do |coll|
         board_render << "#{coll.slice(0)} "
         lines = @cells.find_all { |cell| coll.slice(0) == cell[0].slice(0)}
-        # @cells.find_all do |cell|
-        #   p "#{cell[1].render} "
-        #   coll.slice(0) == cell[0].slice(0)
-        # end
         lines.each do |cell|
           board_render << "#{cell[1].render} "
+        end
+        board_render << "\n"
+      end
+    else
+      @horiz.each do |coll|
+        board_render << "#{coll.slice(0)} "
+        lines = @cells.find_all { |cell| coll.slice(0) == cell[0].slice(0)}
+        lines.each do |cell|
+          board_render << "#{cell[1].render(true)} "
         end
         board_render << "\n"
       end
