@@ -59,4 +59,12 @@ describe '#valid_placement' do
     # require 'pry'; binding.pry
     expect(board.valid_placement?(cruiser, ['B1', 'C1', 'D1'])).to eq(true)
   end
+
+  describe '#place' do
+    it 'places a ship on the board' do
+      board = Board.new
+      cruiser = Ship.new('Cruiser', 3)
+      expect(board.place(cruiser, ['B2', 'B3', 'B4'])).to eq true
+    end
+  end
 end

@@ -44,9 +44,15 @@ class Board
   #   end
   #   valid_placement
   # end
+  def placement_occupied?(coords)
+    occupied = coords.map {|coord| @cells[coord].empty?}
+    occupied.include?(false)
+  end
 
   def valid_placement?(ship, coords)
-    if(ship.length == coords.length)
+    if placement_occupied?(coords)
+        false
+    elsif(ship.length == coords.length)
       letters = coords.map { |coord| coord.slice(0)}
       numbers = coords.map { |coord| coord.slice(1)}
       number_ints = numbers.map { |number| number.to_i}
@@ -58,6 +64,17 @@ class Board
       elsif(numbers.uniq.length != 1 && letters.uniq.length != 1) #return false if positions aren't contained to one row or one column
         false
       end
+    else
+      false
+    end
+  end
+
+  def place(ship, coords)
+    if valid_placement?(ship, coords)
+      coords.each do |coord|
+        @cells[coord].place_ship(ship)
+      end
+      true
     else
       false
     end
